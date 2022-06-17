@@ -4,7 +4,7 @@ namespace Darkeum\DarklyyPackageTools;
 
 use Carbon\Carbon;
 use Illuminate\Support\Facades\View;
-use Illuminate\Support\ServiceProvider;
+use Boot\Support\ServiceProvider;
 use Boot\Support\Str;
 use ReflectionClass;
 use Darkeum\DarklyyPackageTools\Exceptions\InvalidPackage;
@@ -53,7 +53,7 @@ abstract class PackageServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
             foreach ($this->package->configFileNames as $configFileName) {
                 $this->publishes([
-                    $this->package->basePath("/../config/{$configFileName}.php") => config_path("{$configFileName}.php"),
+                    $this->package->basePath("/../config/{$configFileName}.php") => config_path("{$configFileName}.config.php"),
                 ], "{$this->package->shortName()}-config");
             }
 
